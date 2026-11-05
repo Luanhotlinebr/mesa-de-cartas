@@ -1,11 +1,45 @@
 import { PilhaDeCartas } from "../contratos/pilha-de-cartas";
 import { Carta } from "../modelos/carta";
 
-class PilhaEmArray implements PilhaDeCartas {
-  empilhar(carta: Carta): void {}
-  desempilhar(): Carta {}
-  topo(): Carta {}
+export class PilhaEmArray implements PilhaDeCartas {
+  private cartas: Carta[];
+  private tampa: number;
+  private capacidade: number;
 
-  estaVazia(): boolean {}
-  tamanho(): number {}
+  constructor(capacidade: number) {
+    this.cartas = new Array<Carta>(capacidade);
+    this.tampa = -1;
+    this.capacidade = 0;
+  }
+
+  empilhar(carta: Carta): void {
+    this.tampa++;
+    this.cartas[this.tampa] = carta;
+    console.log("Carta adicionada");
+  }
+
+  desempilhar(): Carta {
+    if (this.estaVazia()) {
+      throw new Error("A lista já está vazia");
+    }
+    const carta = this.cartas[this.tampa];
+    this.tampa--;
+    return carta;
+  }
+  topo(): Carta {
+    if (this.estaVazia()) {
+      throw new Error("A lista já está vazia");
+    }
+    return this.cartas[this.tampa];
+  }
+
+  estaVazia(): boolean {
+    return this.tampa == -1;
+  }
+  tamanho(): number {
+    return this.tampa + 1;
+  }
+  estaCheia(): boolean {
+    return this.tampa === this.capacidade - 1;
+  }
 }
