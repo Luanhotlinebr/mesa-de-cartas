@@ -21,8 +21,8 @@ class FormatadorCompacto implements FormatadorDeCarta {
       return "Q";
     } else if (carta.valor === 13) {
       return "K";
+    } else {
+      return String(carta.valor);
     }
-
-    return String(carta.valor);
   }
 }
