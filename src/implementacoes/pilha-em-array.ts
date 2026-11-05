@@ -4,12 +4,10 @@ import { Carta } from "../modelos/carta";
 export class PilhaEmArray implements PilhaDeCartas {
   private cartas: Carta[];
   private tampa: number;
-  private capacidade: number;
 
   constructor(capacidade: number) {
     this.cartas = new Array<Carta>(capacidade);
     this.tampa = -1;
-    this.capacidade = 0;
   }
 
   empilhar(carta: Carta): void {
@@ -40,6 +38,6 @@ export class PilhaEmArray implements PilhaDeCartas {
     return this.tampa + 1;
   }
   estaCheia(): boolean {
-    return this.tampa === this.capacidade - 1;
+    return this.tampa === this.cartas.length - 1;
   }
 }
