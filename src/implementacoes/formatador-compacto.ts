@@ -9,11 +9,15 @@ import { NAIPES } from "../modelos/carta";
 //   Naipe:  Copas = ♥, Espadas = ♠, Ouros = ♦, Paus = ♣.
 // Exemplos: Ás de Copas = "A♥", 10 de Espadas = "10♠",
 //           Dama de Ouros = "Q♦", Rei de Paus = "K♣".
+//["Ouros", "Espadas", "Copas", "Paus"];
 
 class FormatadorCompacto implements FormatadorDeCarta {
+  constructor(private carta: Carta) {
+    this.carta = carta;
+  }
   formatar(carta: Carta): string {
     let valorFormatado: string = "";
-    let formatoNaipe: string = "";
+    let tipoNaipe: string = "";
 
     if (carta.valor === 1) {
       return "A";
@@ -26,7 +30,15 @@ class FormatadorCompacto implements FormatadorDeCarta {
     } else if (carta.valor === 13) {
       valorFormatado = "K";
     }
-
-    return valorFormatado;
+    if (carta.naipe === "Ouros") {
+      tipoNaipe = "♦";
+    } else if (carta.naipe === "Espadas") {
+      tipoNaipe = "♠";
+    } else if (carta.naipe === "Copas") {
+      tipoNaipe = "♥";
+    } else {
+      tipoNaipe = "♣";
+    }
+    return valorFormatado + tipoNaipe;
   }
 }
