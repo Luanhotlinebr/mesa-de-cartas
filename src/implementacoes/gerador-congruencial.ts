@@ -8,10 +8,13 @@ export class GeradorCongruencial implements GeradorAleatorio {
       throw new Error("Semente invalida");
     }
 
-    this.estado = (this.semente * 16807) % 2147483647;
+    this.estado = this.semente;
   }
 
   proximoInteiro(limite: number): number {
+    if (!Number.isInteger(limite) || limite < 1) {
+      throw new Error("Limite invalido");
+    }
     this.estado = (this.estado * 16807) % 2147483647;
     let resultado = this.estado % limite;
     return resultado;
