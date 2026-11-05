@@ -5,15 +5,14 @@ export class PilhaEmArray implements PilhaDeCartas {
   private cartas: Carta[];
   private tampa: number;
 
-  constructor(capacidade: number) {
-    this.cartas = new Array<Carta>(capacidade);
+  constructor() {
+    this.cartas = new Array<Carta>();
     this.tampa = -1;
   }
 
   empilhar(carta: Carta): void {
     this.tampa++;
     this.cartas[this.tampa] = carta;
-    console.log("Carta adicionada");
   }
 
   desempilhar(): Carta {
@@ -36,8 +35,5 @@ export class PilhaEmArray implements PilhaDeCartas {
   }
   tamanho(): number {
     return this.tampa + 1;
-  }
-  estaCheia(): boolean {
-    return this.tampa === this.cartas.length - 1;
   }
 }
